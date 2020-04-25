@@ -1,0 +1,107 @@
+﻿@using DotnetFlix.Objects.Movies;
+@model IEnumerable<Movie>
+
+@*<link href="~/netflix/css/netflixSlider.css" rel="stylesheet" />
+<script src="~/netflix/js/netflixSlider.js"></script>*@
+
+<div class="billboard-row" role="region" aria-label="Contenuti consigliati">
+    @foreach (var results in Model)
+    {
+
+        <div class="billboard billboard-pane billboard-pane-main billboard-originals full-bleed-billboard trailer-billboard video-playing">
+
+            <!-- HERO VIEW-->
+            <div class="motion-background-component bottom-layer full-screen">
+                <div class="hero-image-wrapper">
+                    <div style="position: relative; width: 100%; height: 100%; overflow: hidden;">
+
+                        <div style="position: relative; width: 100%; height: 100%; overflow: hidden;">
+                            <a href="@Url.Action("MovieDetails","Movie", new { movieId = results.Id })">
+                                <img src="@results.PosterPath" alt="">
+                            </a>
+                            <a src="@results.Title"></a>
+                            <a src="@results.Genre"></a>
+                            <a src="@results.ReleaseDate"></a>
+                            <a src="@results.VoteAverage"></a>
+                            
+                        </div>
+
+                    </div>
+
+                    <div class="trailer-vignette vignette-layer"></div>
+                    <div class="hero-vignette vignette-layer"></div>
+                    <div class="embedded-components button-layer"></div>
+                </div>
+                <div class="embedded-components button-layer">
+                    <span class="ActionButtons">
+                        <div class="global-supplemental-audio-toggle audio-btn button-layer">
+                            <div class="nf-svg-button-wrapper" data-uia="">
+                                <a role="link" tabindex="0" class="nf-svg-button simpleround" aria-label="Audio ON">
+                                    <svg class="svg-icon svg-icon-audio-off" focusable="true">
+                                        <use filter="" xlink:href="#audio-off"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </span>
+                    <span class="maturity-rating ">
+                        <span class="maturity-number">16+</span>
+                    </span>
+                </div>
+            </div>
+
+
+
+            <div class="fill-container">
+                <div class="info meta-layer">
+                    <div class="logo-and-text meta-layer">
+                        <div class="titleWrapper" style="transform-origin: left bottom; transform: scale(0.6) translate3d(0px, 40px, 0px); transition-duration: 1300ms; transition-delay: 5000ms;">
+                            <div class="billboard-title">
+
+
+
+                                <span class="maturity-rating ">
+                                    <span class="maturity-number">
+                                        <Span> @results.Title  //</Span>
+                                        <Span> @Convert.ToDateTime(results.ReleaseDate).ToString("yyyy")</Span>
+                      
+                                    </span>
+                                </span>
+                                
+
+                            </div>
+                        </div>
+                        <div class="info-wrapper" style="transform: translate3d(0px, 24px, 0px); transition-duration: 1300ms; transition-delay: 5000ms;">
+                            <div class="info-wrapper-fade" style="opacity: 0; transition-duration: 500ms; transition-delay: 5000ms;">
+                                @*<div class="episode-title-container">@results.ReleaseDate</div>*@
+                                @*<div class="synopsis-fade-container">
+                                    <div class="synopsis no-supplemental">@results.Genre</div>
+                                </div>*@
+                            </div>
+                        </div>
+                        <div class="billboard-links button-layer forward-leaning">
+                            <a data-uia="play-button" role="link" aria-label="Riproduci" class=" playLink" href="/watch/80002538?trackId=2540151">
+                                <span tabindex="-1" class="nf-icon-button nf-flat-button nf-flat-button-uppercase" data-uia="">
+                                    <span class="nf-flat-button-icon nf-flat-button-icon-play"></span>
+                                    <span class="nf-flat-button-text">Play</span>
+                                </span>
+                            </a>
+                            <a tabindex="0" class="nf-icon-button nf-flat-button nf-flat-button-uppercase" role="link" href="@Url.Action("MovieDetails","Movie", new { movieId = results.Id })" data-uia="">
+                                <svg class="svg-icon svg-icon-info nf-flat-button-icon" focusable="true">
+                                    <use filter="" xlink:href="#info"></use>
+                                </svg>
+                                <span class="nf-flat-button-text">Details</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ENDS HERO VIEW-->
+
+
+        </div>
+
+    }
+</div>
+
+

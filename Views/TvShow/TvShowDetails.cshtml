@@ -1,0 +1,208 @@
+﻿@using DotnetFlix.Objects.TvShows
+@model TvShow
+
+@{
+    ViewData["Title"] = "FilterTvShows";
+    <link rel="stylesheet" href="~/css/searchmovie.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+}
+
+
+
+
+
+
+
+<span class="jawBoneContent open">
+    <span class="jawBoneOpenContainer">
+        <div class="jawBoneFadeInPlaceContainer">
+            <div id="80016588" class="jawBoneContainer slider-hover-trigger-layer">
+                <div class="background">
+                    <div class="jawBoneBackground image-rotator">
+                        <!--POSTER-->
+                        <span>
+                            <div class="ptrack-content" ">
+                                <img class="image-rotator-image" src="https://image.tmdb.org/t/p/original/@Model.BackdropPath" style=" z-index: 2; opacity: 1; transition-duration: 750ms;" />
+                                <div class="image-rotator-image " style="background-image: url(&quot;https://image.tmdb.org/t/p/original/@Model.BackdropPath&quot;); z-index: 2; opacity: 1; transition-duration: 750ms;">
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="vignette">
+                    </div>
+                    <div class="nav-shadow">
+                    </div>
+                </div>
+                <div class="jawBone">
+                    <h1>
+                        <a class="jawbone-title-link" @*href="/title/80016588"*@>
+                            <!--TITLE-->
+                            <Span>@Model.OriginalName  </Span> <Span class="span_date">(@Convert.ToDateTime(Model.FirstAirDate).ToString("yyyy"))</Span>
+                            <div class="title has-jawbone-nav-transition">
+                            </div>
+                        </a>
+                    </h1>
+                    <div class="jawBoneCommon">
+                        <div class="jawBonePanes">
+                            <div class="jawBonePane" id="pane-Overview" tabindex="-1" style="opacity: 1; transition-duration: 300ms;">
+                                <div class="ptrack-container">
+                                    <div>
+                                        <!--OVERVIEW-->
+                                        <div class="overview">
+                                            <div class="ptrack-content" data-ui-tracking-context="">
+                                                <div class="jawbone-overview-info has-jawbone-nav-transition">
+                                                    <div class="meta video-meta ">
+                                                        <span class="match-score-wrapper">
+                                                            <div class="show-match-score rating-inner">
+                                                                <div class="meta-thumb-container thumb-down">
+                                                                    <svg class="svg-icon svg-icon-thumb-down-filled thumb thumb-down-filled" focusable="true">
+                                                                        <use filter="" xlink:href="#thumb-down-filled"></use>
+                                                                    </svg>
+                                                                </div>
+                                                                <div class="meta-thumb-container thumb-up">
+                                                                    <svg class="svg-icon svg-icon-thumb-up-filled thumb thumb-up-filled" focusable="true">
+                                                                        <use filter="" xlink:href="#thumb-up-filled"></use>
+                                                                    </svg>
+                                                                </div>
+                                                                <!--VOTE-->
+                                                                <span class="match-score">@Model.VoteAverage</span>
+                                                            </div>
+                                                        </span>
+                                                        <!--YEAR RELEASE-->
+                                                        <span class="year">@Convert.ToDateTime(Model.FirstAirDate).ToString("yyyy")</span>
+                                                        <!--GENRE-->
+                                                        @foreach (var genre in Model.Genres)
+                                                        {
+                                                            <span class="genres">@genre.Name</span>
+                                                        }
+                                                        <span class="year">@Convert.ToDateTime(Model.FirstAirDate).ToString("yyyy")</span>
+                                                        <!--RATING-->
+                                                        <span class="maturity-rating ">
+                                                            <span class="maturity-number">16+</span>
+                                                        </span><span class="duration">@Model.Networks</span>
+                                                    </div>
+                                                    <div class="video-title"></div>
+                                                    <!--OVERVIEW-->
+                                                    <div class="synopsis">@Model.Overview</div>
+                                                    <!--PLAY TRAILER-->
+                                                    <div class="jawbone-actions">
+                                                        <a trackid="" data-uia="play-button" role="link" aria-label="Riproduci" class=" playLink" href="@Model.Videos">
+                                                            <span tabindex="-1" class="nf-icon-button nf-flat-button nf-flat-button-primary nf-flat-button-uppercase" data-uia="">
+                                                                <span class="nf-flat-button-icon nf-flat-button-icon-play"></span>
+                                                                <span class="nf-flat-button-text">Riproduci</span>
+                                                            </span>
+                                                        </a>
+                                                        <!--MY LIST-->
+                                                        <div class="ptrack-content" data-ui-tracking-context="">
+                                                            <a tabindex="0" class="nf-icon-button nf-flat-button mylist-button nf-flat-button-uppercase" aria-label="Aggiungi a La mia lista" role="link" data-uia="myListButton">
+                                                                <span class="nf-flat-button-icon nf-flat-button-icon-mylist-add"></span>
+                                                                <span class="nf-flat-button-text">La mia lista</span>
+                                                            </a>
+                                                        </div>
+                                                        <!--LIKE UP-->
+                                                        <span class="thumbs-container">
+                                                            <div class="thumbs-component thumbs thumbs-horizontal animated unrated" data-uia="thumbs-container">
+                                                                <div class="nf-svg-button-wrapper thumb-container thumb-up-container " data-uia="">
+                                                                    <a role="link" data-rating="2" tabindex="0" class="nf-svg-button simpleround" aria-label="Valutazione pollice alzato">
+                                                                        <svg data-rating="2" class="svg-icon svg-icon-thumb-up" focusable="true">
+                                                                            <use filter="" xlink:href="#thumb-up"></use>
+                                                                        </svg>
+                                                                    </a>
+                                                                </div>
+                                                                <!--LIKE DOWN-->
+                                                                <div class="nf-svg-button-wrapper thumb-container thumb-down-container " data-uia="">
+                                                                    <a role="link" data-rating="1" tabindex="0" class="nf-svg-button simpleround" aria-label="Valutazione pollice verso">
+                                                                        <svg data-rating="1" class="svg-icon svg-icon-thumb-down" focusable="true">
+                                                                            <use filter="" xlink:href="#thumb-down"></use>
+                                                                        </svg>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                    <!--DIRECTOR-->
+                                                    <div class="meta-lists">
+                                                        <p class="cast inline-list" label="Con:">
+                                                            <span class="list-label">Director:</span>
+                                                            @foreach (var crew in Model.Credits.Crew)
+                                                            {
+                                                                if (crew.Job == "Director")
+                                                                {
+                                                                    <span class="list-label">@crew.Name</span>
+                                                                }
+                                                            }
+                                                        </p>
+                                                        <!--STARS-->
+                                                        <p class="genres inline-list" label="Stars:">
+                                                            <span class="list-label">Stars:</span>
+                                                            @foreach (var cast in Model.Credits.Cast)
+                                                            {
+                                                                if (cast.Order == 1 || cast.Order == 2 || cast.Order == 3)
+                                                                {
+                                                                    <span class="list-label">@cast.Name</span>
+                                                                }
+                                                            }
+                                                        </p>
+
+                                                        <!--GENRE-->
+                                                        <p class="genres inline-list" label="Generi:">
+                                                            <span class="list-label">Generi:</span>
+                                                            @foreach (var genre in Model.Genres)
+                                                            {
+                                                                <span class="list-label">@genre.Name</span>
+                                                            }
+                                                        </p>
+
+                                                        <!--COUNTRY-->
+                                                        <p class="genres inline-list" label="Country:">
+                                                            <span class="list-label">Country:</span>
+                                                            @foreach (var country in Model.OriginCountry)
+                                                            {
+                                                                <span class="list-label">@country.FirstOrDefault()</span>
+                                                            }
+                                                        </p>
+
+                                                        <p class="tags inline-list" label="Caratteristiche:">
+                                                            <span class="list-label">Caratteristiche:</span>
+                                                            <span class="list-items">
+                                                                <a href="/browse/genre/108658">Creativo</a>,
+                                                                <a href="/browse/genre/2975854">Forte</a>,
+                                                                <a href="/browse/genre/100041">Avvincente</a>
+                                                            </span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="jaw-play-hitzone" role="presentation">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="menu" role="tablist">
+                        <li class="Overview current" id="tab-Overview">
+                            <a role="link" tabindex="0">RIEPILOGO</a>
+                            <span></span>
+                        </li>
+                        <li class="MoreLikeThis" id="tab-MoreLikeThis">
+                            <a role="link" tabindex="0">ALTRI TITOLI SIMILI</a>
+                            <span></span>
+                        </li>
+                        <li class="ShowDetails" id="tab-ShowDetails">
+                            <a role="link" tabindex="0">DETTAGLI</a>
+                            <span></span>
+                        </li>
+                    </ul>
+                </div>
+                <button class="close-button icon-close" tabindex="0" aria-label="Chiudi"></button>
+            </div>
+        </div>
+    </span>
+</span>
+
+
+
+
+

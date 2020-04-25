@@ -1,0 +1,27 @@
+﻿.iconhover {
+    border-radius: 10px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+}
+
+    .dropdown-content a {
+        display: block;
+    }
+
+        .dropdown-content a:hover {
+        }
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+}

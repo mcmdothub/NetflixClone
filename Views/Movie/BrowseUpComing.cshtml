@@ -1,0 +1,43 @@
+﻿@using DotnetFlix.Objects.Movies
+@model cloudscribe.Pagination.Models.PagedResult<Movie>
+@{
+    ViewData["Title"] = "Movies";
+    ViewData["Controller"] = "Movie";
+    ViewData["Action"] = "FilterMovie";
+    <link rel="stylesheet" href="~/css/searchmovie.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+}
+
+
+
+
+
+
+<div class="lolomoRow lolomoRow_title_card" data-list-context="genre">
+    <h2 class="rowHeader">
+        <a aria-label="serie tv" class="rowTitle">
+            <!--Head Title-->
+            <div class="row-header-title">// UP COMING MOVIES</></div>
+
+            <div class="aro-row-header">
+                <!-- Hover => Sort by-->
+                <div class="see-all-link"><partial name="_FilterPartial" /></></div>
+                <div class="aro-row-chevron icon-akiraCaretDown">
+
+
+                </div>
+
+
+            </div>
+
+        </a>
+    </h2>
+</div>
+
+
+@await Component.InvokeAsync("UpComing")
+
+
+
+
+

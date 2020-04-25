@@ -1,0 +1,134 @@
+﻿
+.dropdown-large {
+    position: static !important;
+    
+}
+
+.dropdown-menu-large {
+    margin-left: 16px;
+    margin-right: 16px;
+    background-color: #2e2e2e;
+    border-radius: 10px;
+    border: 2px solid #90cea1;
+    padding-right: 10px;
+}
+
+.dropdown-menu-large > li > ul {
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-menu-large > li > ul > li {
+    list-style: none;
+}
+
+.dropdown-menu-large > li > ul > li > a {
+    display: block;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.428571429;
+    color: #333333;
+    white-space: normal;
+}
+
+.dropdown-menu-large > li ul > li > a:hover,
+.dropdown-menu-large > li ul > li > a:focus {
+text-decoration: none;
+color: #262626;
+background-color: #f5f5f5;
+}
+
+.dropdown-menu-large .disabled > a,
+.dropdown-menu-large .disabled > a:hover,
+.dropdown-menu-large .disabled > a:focus {
+color: #999999;
+}
+
+.dropdown-menu-large .disabled > a:hover,
+.dropdown-menu-large .disabled > a:focus {
+text-decoration: none;
+background-color: transparent;
+background-image: none;
+filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+cursor: not-allowed;
+}
+
+    .dropdown-menu-large .dropdown-header {
+        color: #90cea1;
+        font-size: 25px;
+    }
+
+@media (max-width: 768px) {
+    .dropdown-menu-large {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .dropdown-menu-large > li {
+        margin-bottom: 30px;
+    }
+
+    .dropdown-menu-large > li:last-child {
+        margin-bottom: 0;
+    }
+
+    .dropdown-menu-large .dropdown-header {
+      
+    }
+}
+
+/*sort by*/
+.sortby_ul {
+    list-style: none;
+    padding-left: 10px;
+}
+
+.sortby_li {
+    color: #a89292;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
+.input_radio {
+    visibility: hidden;   
+}
+i{
+    color:white;
+}
+
+label {
+    cursor: pointer;
+    background: #242424;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+    border: 2px solid #82b8ac;
+    display: inherit;
+    padding-left: 10px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.checkbox_label {
+    cursor: pointer;
+    border: none;
+    font-weight: normal;
+    color: #a89292;  
+    display:inherit;
+}
+
+input:checked + label {
+    background: #90cea1;
+    border: 2px solid #ffffff;
+    color: white;
+}
+
+/*Genre*/
+.filtergenrecontainer {
+    border-radius: 10px;
+    border: 2px solid #82b8ac;
+    background: #242424;
+    padding-top: 5px;
+    margin-top: 10px;
+    display: flex;
+}

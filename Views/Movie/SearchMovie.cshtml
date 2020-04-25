@@ -1,0 +1,114 @@
+﻿@using DotnetFlix.Objects.Movies
+@model cloudscribe.Pagination.Models.PagedResult<Movie>
+@{
+    ViewData["Title"] = "SearchMovie";
+    ViewData["Controller"] = "Movie";
+    ViewData["Action"] = "SearchMovie";
+    @*<link href="~/css/searchmovie.css" rel="stylesheet" />*@
+    <link href="~/netflix/css/netflixPagination.css" rel="stylesheet" />
+}
+
+
+<style>
+
+
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .column {
+        float: left;
+        width: 13.33%;
+        padding: 5px;
+    }
+
+    /* Clearfix (clear floats) */
+    .row::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    .box {
+        display: grid;
+        grid-gap: 10px;
+        /*grid-template-columns: repeat(6, minmax(100px, 1fr));*/
+        grid-template-columns: repeat(6, minmax(1fr));
+        /*grid-template-columns: auto auto auto;*/
+    }
+
+        .box a:hover {
+            transition: transform .3s;
+            -ms-transform: scale(1.4);
+            -webkit-transform: scale(1.4);
+            transform: scale(1.4);
+        }
+
+        .box img {
+            border-radius: 10px;
+            max-width: 100%;
+        }
+</style>
+
+
+
+<nav data-pagination>
+    <a href=# disabled><i class=ion-chevron-left></i></a>
+    <ul>
+        <partial name="_PaginationPartial" model="Model" />
+
+    </ul>
+    <a href=#2><i class=ion-chevron-right></i></a>
+
+</nav>
+
+
+<div class="row ">
+
+    <div class="searchresults">
+        <h3>RESULTS FOR : <span>@ViewData["Query"]</span></h3>
+        <div class="resultTotal">
+            <h4><span class="resultTotalColour">@Model.TotalItems</span> RESULTS</h4>
+        </div>
+    </div>
+
+    @foreach (var product in Model.Data)
+    {
+
+        <div class="column">
+            <div class="box">
+
+                <a href="@Url.Action("MovieDetails","Movie", new { movieId = @product.Id })">
+                    @if (product.PosterPath == null)
+                    {
+                        <img src="~/images/noposteravailable200.png" style="max-width: 100%" />
+                    }
+                    else
+                    {
+                        <img src="https://image.tmdb.org/t/p/original/@product.PosterPath" />
+                    }
+                    <h5>@product.Title</h5>
+                </a>
+
+
+            </div>
+
+        </div>
+    }
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+

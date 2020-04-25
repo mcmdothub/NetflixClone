@@ -1,0 +1,49 @@
+﻿body {
+    overflow-x: hidden;
+    background-color: black;
+}
+
+.carousel {
+    display: grid;
+    grid-auto-flow: row;
+    overflow-x: unset;
+    width: 100%;
+    grid-template-columns: repeat(5, 1fr);
+    margin-top: 50px;
+}
+
+.item {
+    height: 200px;
+    background-color: rgb(0, 0, 0);
+    border: 0px;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-bottom: 15px;
+}
+
+.carousel,
+.item {
+    transition: transform 0.3s ease-out, opacity 0.1s ease-out;
+}
+
+.item {
+    transform-origin: center left;
+}
+
+.carousel:hover {
+    -webkit-transform: translate3d(-62.5px, 0, 0);
+    transform: translate3d(-62.5px, 0, 0);
+}
+
+    .carousel:hover .item {
+        opacity: 0.3;
+    }
+
+        .carousel:hover .item:hover {
+            transform: scale(1.5);
+            opacity: 3;
+        }
+
+.item:hover ~ .item {
+    transform: translate3d(90px, 0, 0);
+}

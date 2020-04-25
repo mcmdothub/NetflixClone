@@ -1,0 +1,13 @@
+﻿@using DotnetFlix.Objects.Movies
+@model cloudscribe.Pagination.Models.PagedResult<Movie>
+@{
+    ViewData["Title"] = "Movies";
+    ViewData["Controller"] = "Movie";
+    ViewData["Action"] = "FilterMovie";
+    <link rel="stylesheet" href="~/css/searchmovie.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+}
+
+<h1>Movies</h1>
+
+<partial name="_FilterPartial" />

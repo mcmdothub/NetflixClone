@@ -1,0 +1,246 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - DOTNETFLIX</title>
+    <link href="~/netflix/css/styles.css" rel="stylesheet" />
+    <link href="~/netflix/css/netflix.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />*@
+    <link rel="icon" href="~/images/film-icon.svg" />
+</head>
+
+<body class="nimbus-is-editor">
+    <div id="appMountPoint">
+        <div class="netflix-sans-font-loaded">
+            <div dir="ltr" class="">
+                <div class="bd dark-background" lang="it-SE" data-uia="container-adult">
+                    <div class="pinning-header">
+                        <div class="pinning-header-container" style="top: 0px; position: relative; background: transparent;">
+
+                            <!--HEADER START-->
+
+                            <div class="main-header has-billboard menu-navigation" role="navigation">
+                                <!--lOGO-->
+                                <a aria-label="Netflix" class="DOTNETFLIX" asp-area="" asp-controller="Movie" asp-action="Index"></a>
+                                <ul class="tabbed-primary-navigation">
+                                    <!--MENU ITEMS-->
+                                    <li class="navigation-menu">
+                                        <a class="menu-trigger" role="button" aria-haspopup="true" tabindex="0">Browse</a>
+                                    </li>
+                                    <li class="navigation-tab">
+                                        <a class="current active" asp-area="" asp-controller="Movie" asp-action="Index">Home</a>
+                                    </li>
+                                    <li class="navigation-tab">
+                                        <a class="menu-trigger" asp-area="" asp-controller="TvShow" asp-action="TvShows">TV Shows</a>
+                                    </li>
+                                    <li class="navigation-tab">
+                                        <a class="menu-trigger" asp-area="" asp-controller="Movie" asp-action="Movies">Movies</a>
+                                    </li>
+                                    @*<li class="navigation-tab">
+                                            <a href="/">Recently Added</a>
+                                        </li>*@
+                                    <li class="navigation-tab">
+                                        <a class="menu-trigger" asp-area="" asp-controller="Movie" asp-action="MyList">My List</a>
+                                    </li>
+                                </ul>
+
+                                <!--SECOND RIGHT MENU OPTIONS-->
+                                <div class="secondary-navigation">
+                                    <!--SEARCH-->
+                                    <div class="nav-element">
+                                        <div>
+                                            <form method="get" action="@Url.Action("SearchMovie","Movie")">
+                                                <div class="input-group ">
+                                                    <div class="search-box">
+                                                        <i class="fa fa-search search-box__icon"></i>
+                                                        <input type="text" class="search-box__input" placeholder="Search..." name="searchString" />
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!--ENDS SEARCH BOX-->
+                                    <!--NOTIFICATIONS / NEWS-->
+                                    <div class="nav-element">
+                                        <span class="gifts iconhover" data-tooltip="gifts-tooltip">
+                                            <a data-uia="action-click-gift-box" class="gifts-menu" aria-haspopup="true" aria-label="Buoni regalo" href="/referfriends">
+                                                <svg viewBox="0 0 20 21" role="img" aria-labelledby="gift-box" class="gifts-menu__icon">
+                                                    <defs>
+                                                        <polygon id="path-1" points="9.09">
+                                                        </polygon>
+                                                    </defs>
+                                                    <g id="V1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <g id="Cell-4-2" transform="translate(-1083.000000, -24.000000)">
+                                                            <g id="Group-3" transform="translate(1083.000000, 24.000000)">
+                                                                <mask id="mask-2" fill="white">
+                                                                    <use xlink:href="#path-1"></use>
+                                                                </mask>
+                                                                <g id="Clip-2"></g>
+                                                                <path d="182 L14.600" id="Fill-1" fill="#FFFFFF" mask="url(#mask-2)">
+                                                                </path>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                            </a>
+                                        </span>
+                                    </div>
+                                    <div class="nav-element">
+                                        <span class="notifications">
+                                            <button class="notifications-menu" aria-haspopup="true" aria-expanded="false" aria-label="Avvisi">
+                                                <span class="icon-button-notification"></span>
+                                                <span class="notification-pill">9+</span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                    <div class="dropdown">
+                                        <div class="dropbtn imagehover">
+                                            <img class="profile-icon" src="https://occ-0-867-41.1.nflxso.net/dnm/api/v6/Z-WHgqd_TeJxSuha8aZ5WpyLcX8/AAAABVpCp2V5DLp70hNlzdg5yeIL_zlJbmWkMIJkDetg8kCTZ_C6wvX2M5PSog1x3XfyPDep8LX1UNo74Qc6_pVFiWc.png?r=f79" alt="">
+                                            <div class="callout-arrow" style="opacity: 1; transition-duration: 150ms;"></div>
+                                        </div>
+
+                                        <partial name="_LoginPartial" />
+
+                                        
+
+                                    </div>
+                                </div>
+                                <!--ENDS SECOND RIGHT MENU OPTIONS-->
+                            </div>
+                            <!--ENDS HEADER-->
+
+                        </div>
+                    </div>
+
+
+
+                    <!--MAIN-->
+                    <div class="container-fluid">
+
+                        @RenderBody()
+
+                    </div>
+
+                    <!--FOOTER START-->
+                    <footer>
+                        <div role="contentinfo" class="member-footer">
+                            <div class="social-links">
+                                <a class="social-link" href="https://www.facebook.com" target="_blank" aria-label="facebook">
+                                    <svg class="svg-icon svg-icon-facebook-logo" focusable="true">
+                                        <use filter="" xlink:href="#facebook-logo"></use>
+                                    </svg>
+                                </a><a class="social-link" href="https://www.instagram.com" target="_blank" aria-label="instagram">
+                                    <svg class="svg-icon svg-icon-instagram-logo" focusable="true">
+                                        <use filter="" xlink:href="#instagram-logo"></use>
+                                    </svg>
+                                </a><a class="social-link" href="https://twitter.com" target="_blank" aria-label="twitter">
+                                    <svg class="svg-icon svg-icon-twitter-logo" focusable="true">
+                                        <use filter="" xlink:href="#twitter-logo"></use>
+                                    </svg>
+                                </a>
+                                <a class="social-link" href="https://www.youtube.com" target="_blank" aria-label="youtube">
+                                    <svg class="svg-icon svg-icon-youtube-logo" focusable="true">
+                                        <use filter="" xlink:href="#youtube-logo"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                            <ul class="member-footer-links">
+                                <li class="member-footer-link-wrapper">
+                                    <a class="member-footer-link" href="/browse/subtitles">
+                                        <span class="member-footer-link-content">Audio e sottotitoli</span>
+                                    </a>
+                                </li>
+                                <li class="member-footer-link-wrapper">
+                                    <a class="member-footer-link" href="/browse/audio-description">
+                                        <span class="member-footer-link-content">Audiodescrizione</span>
+                                    </a>
+                                </li>
+                                <li class="member-footer-link-wrapper">
+                                    <a class="member-footer-link" href="https://help.dotnetflix.com/">
+                                        <span class="member-footer-link-content">Centro assistenza</span>
+                                    </a>
+                                </li>
+                                <li class="member-footer-link-wrapper">
+                                    <a class="member-footer-link" href="/redeem">
+                                        <span class="member-footer-link-content">Carte regalo</span>
+                                    </a>
+                                </li>
+                                <li class="member-footer-link-wrapper">
+                                    <a class="member-footer-link" href="https://media.dotnetflix.com/">
+                                        <span class="member-footer-link-content">Media Center</span>
+                                    </a>
+                                </li>
+                                <li class="member-footer-link-wrapper">
+                                    <a class="member-footer-link" href="http://ir.dotnetflix.com/">
+                                        <span class="member-footer-link-content">Rapporti con gli investitori</span>
+                                    </a>
+                                </li>
+                                <li class="member-footer-link-wrapper">
+                                    <a class="member-footer-link" href="https://jobs.dotnetflix.com/">
+                                        <span class="member-footer-link-content">Opportunità di lavoro</span>
+                                    </a>
+                                </li>
+                                <li class="member-footer-link-wrapper">
+                                    <a class="member-footer-link" href="https://help.dotnetflix.com/legal/termsofuse">
+                                        <span class="member-footer-link-content">Condizioni di utilizzo</span>
+                                    </a>
+                                </li>
+                                <li class="member-footer-link-wrapper">
+                                    <a class="member-footer-link" href="https://help.dotnetflix.com/legal/privacy">
+                                        <span class="member-footer-link-content">Privacy</span>
+                                    </a>
+                                </li>
+                                <li class="member-footer-link-wrapper">
+                                    <a class="member-footer-link" href="https://help.dotnetflix.com/legal/notices">
+                                        <span class="member-footer-link-content">Note legali</span>
+                                    </a>
+                                </li>
+                                <li class="member-footer-link-wrapper">
+                                    <a class="member-footer-link" href="/Cookies">
+                                        <span class="member-footer-link-content">Preferenze per i cookie</span>
+                                    </a>
+                                </li>
+                                <li class="member-footer-link-wrapper">
+                                    <a class="member-footer-link" href="https://help.dotnetflix.com/support/2101">
+                                        <span class="member-footer-link-content">Informazioni sull'azienda</span>
+                                    </a>
+                                </li>
+                                <li class="member-footer-link-wrapper">
+                                    <a class="member-footer-link" href="https://help.dotnetflix.com/contactus">
+                                        <span class="member-footer-link-content">Contattaci</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="member-footer-service">
+                                <button class="service-code">Codice di servizio</button>
+                            </div>
+                            <div class="member-footer-copyright">
+                                <span>© 1997-2020 DotNetflix, Inc.&lrm;</span>
+                            </div>
+                        </div>
+                    </footer>
+                    <!--ENDS FOOTER -->
+
+                    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+                    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+                    <script src="~/netflix/js/styles.js"></script>
+                    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+                    <script src="~/js/site.js" asp-append-version="true"></script>
+                    @RenderSection("Scripts", required: false)
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+
+
+<!--Test-->

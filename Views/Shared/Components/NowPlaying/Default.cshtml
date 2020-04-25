@@ -1,0 +1,116 @@
+﻿@using DotnetFlix.Objects.Movies;
+@model IEnumerable<Movie>
+@*<link href="~/netflix/css/slider.css" rel="stylesheet" />*@
+<link href="~/netflix/css/netflixSlider.css" rel="stylesheet" />
+<script src="~/netflix/js/netflixSlider.js"></script>
+
+
+
+
+<div class="carousel js-carousel">
+    @foreach (var results in Model)
+    {
+        <div class="item js-item">
+
+            <a href="@Url.Action("MovieDetails","Movie", new { movieId = results.Id })">
+                <img src="@results.PosterPath" onError="this.onerror=null; this.src='/img/error.jpg';" alt="">
+                <div class="tile__details">
+                    <div class="tile__title">@results.Title</div>
+                </div>
+
+
+
+            </a>
+
+        </div>
+
+    }
+</div>
+
+
+
+
+
+
+
+<!--OLD VIEW-->
+
+
+@*<style>
+
+        .box {
+            display: grid;
+            grid-gap: 10px;
+            /*grid-template-columns: repeat(6, minmax(100px, 1fr));*/
+            grid-template-columns: repeat(6, minmax(1fr));
+            /*grid-template-columns: auto auto auto;*/
+        }
+
+            .box a:hover {
+                transition: transform .3s;
+                -ms-transform: scale(1.4);
+                -webkit-transform: scale(1.4);
+                transform: scale(1.4);
+            }
+
+            .box img {
+                border-radius: 10px;
+                max-width: 100%;
+            }
+    </style>*@
+
+
+
+@*<div class="rowContainer rowContainer_title_card" id="row-1">
+        <div class="ptrack-container">
+            <div class="rowContent slider-hover-trigger-layer">
+                <div class="slider">
+                    <ul class="pagination-indicator">
+                        <li class="active"></li>
+                        <li class=""></li>
+                        <li class=""></li>
+                        <li class=""></li>
+                        <li class=""></li>
+                        <li class=""></li>
+                        <li class=""></li>
+                        <li class=""></li>
+                        <li class=""></li>
+                        <li class=""></li>
+                        <li class=""></li>
+                        <li class=""></li>
+                        <li class=""></li>
+                        <li class=""></li>
+                        <li class=""></li>
+                        <li class=""></li>
+                        <li class=""></li>
+                        <li class=""></li>
+                        <li class=""></li>
+                        <li class=""></li>
+                    </ul>
+                    <div class="sliderMask showPeek">
+                        <div class="sliderContent row-with-x-columns" style="-webkit-transform: scale(1.4);-ms-transform: scale(1.4);transform: scale(1.4)">
+                            @foreach (var results in Model)
+                            {
+
+                                <div class="slider-item slider-item-0" style="width:200px;">
+                                    <div class="box">
+                                        <a href="@Url.Action("MovieDetails","Movie", new { movieId = results.Id })">
+                                            <img class="mySlides" src="@results.PosterPath" onerror="this.src='~/img/error.jpg'" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+
+                            }
+                        </div>
+                    </div>
+                    <span class="handle handleNext active" tabindex="0" role="button" aria-label="Vedi altri titoli">
+                        <b class="indicator-icon icon-rightCaret"></b>
+                    </span>
+                </div>
+            </div>
+            <span class="jawBoneContent"></span>
+        </div>
+    </div>*@
+
+
+

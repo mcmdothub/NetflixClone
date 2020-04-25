@@ -1,0 +1,109 @@
+﻿@using DotnetFlix.Objects.Movies
+@model IEnumerable<Movie>
+@{
+    ViewData["Title"] = "Home";
+    <link rel="stylesheet" href="~/css/searchmovie.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+}
+
+<style>
+    .bg-video-wrap {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: 100vh;
+        background: url(https://designsupply-web.com/samplecontent/vender/codepen/20181014.png) no-repeat center center/cover;
+    }
+
+    video {
+        min-width: 100%;
+        min-height: 100vh;
+        z-index: 1;
+    }
+
+    .overlay {
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image: linear-gradient(45deg, rgba(0,0,0,.3) 50%, rgba(0,0,0,.7) 50%);
+        background-size: 3px 3px;
+        z-index: 2;
+    }
+</style>
+
+
+
+<div class="mainView" role="main">
+    <div class="lolomo is-fullbleed">
+        <h1 class="visually-hidden">Home Netflix</h1>
+        <!--FIRST CONTAINER + WITH TRAILER + "Play Button + Other Info + "Age advice""-->
+        @await Component.InvokeAsync("HeroPlaying")
+
+
+
+        <!--ENDS FIRST CONTAINER + WITH TRAILER + "Play Button + Other Info + "Age advice""-->
+        <!-- /////////////////////////////////////////////////////////////////////////////////-->
+        <!--MOVIES CAROUSEL 1-NOW PLAYING-->
+        <div class="lolomoRow lolomoRow_title_card" data-list-context="genre">
+            <h2 class="rowHeader">
+                <a aria-label="serie tv" class="rowTitle" href="@Url.Action("BrowseNowPlaying","Movie")">
+                    <!--Head Title-->
+                    <div class="row-header-title">NOW PLAYING</></div>
+                    <div class="aro-row-header">
+                        <!-- Hover => Browes all-->
+                        <div class="see-all-link">Browse All</div>
+                        <div class="aro-row-chevron icon-akiraCaretRight"></div>
+                    </div>
+                </a>
+            </h2>
+            @await Component.InvokeAsync("NowPlaying")
+        </div>
+        <!--ENDS MOVIES CAROUSEL 1-NOW PLAYING-->
+        <!-- /////////////////////////////////////////////////////////////////////////////////-->
+        <!-- /////////////////////////////////////////////////////////////////////////////////-->
+        <!--MOVIES CAROUSEL 2-POPULAR MOVIES-->
+        <div class="lolomoRow lolomoRow_title_card" data-list-context="genre">
+            <h2 class="rowHeader">
+                <a aria-label="serie tv" class="rowTitle" href="@Url.Action("BrowsePopular","Movie")">
+                    <!--Head Title-->
+                    <div class="row-header-title">POPULAR MOVIES</></div>
+                    <div class="aro-row-header">
+                        <!-- Hover => Browes all-->
+                        <div class="see-all-link">Browse All</div>
+
+                        <div class="aro-row-chevron icon-akiraCaretRight"></div>
+                    </div>
+                </a>
+            </h2>
+            @await Component.InvokeAsync("Popular")
+        </div>
+        <!--ENDS MOVIES CAROUSEL 2-POPULAR MOVIES-->
+        <!-- /////////////////////////////////////////////////////////////////////////////////-->
+        <!-- /////////////////////////////////////////////////////////////////////////////////-->
+        <!--MOVIES CAROUSEL 3-UP COMING MOVIES-->
+        <div class="lolomoRow lolomoRow_title_card" data-list-context="genre">
+            <h2 class="rowHeader">
+                <a aria-label="serie tv" class="rowTitle" href="@Url.Action("BrowseUpComing","Movie")">
+                    <!--Head Title-->
+                    <div class="row-header-title">UP COMING MOVIES</></div>
+                    <div class="aro-row-header">
+                        <!-- Hover => Browes all-->
+                        <div class="see-all-link">Browse All</div>
+
+                        <div class="aro-row-chevron icon-akiraCaretRight"></div>
+                    </div>
+                </a>
+            </h2>
+            @await Component.InvokeAsync("UpComing")
+        </div>
+        <!--ENDS MOVIES CAROUSEL 3-UP COMING MOVIES-->
+        <!-- /////////////////////////////////////////////////////////////////////////////////-->
+
+
+
+    </div>
+</div>
+
+

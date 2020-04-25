@@ -1,0 +1,78 @@
+﻿@using DotnetFlix.Objects.TvShows
+@model cloudscribe.Pagination.Models.PagedResult<TvShow>
+@{
+    ViewData["Title"] = "FilterTvShows";
+    ViewData["Controller"] = "TvShow";
+    ViewData["Action"] = "FilterTvShows";
+    <link href="~/netflix/css/hoverNetflix.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href="~/css/searchmovie.css" />*@
+    <link href="~/netflix/css/netflixPagination.css" rel="stylesheet" />
+    @*<link href="~/netflix/css/flickity.css" rel="stylesheet" />
+        <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>*@
+}
+
+
+@*<style>
+            .row__inner {
+                display: -ms-flexbox;
+                /*display: flex;*/
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+                margin-right: -15px;
+                /*margin-left: -15px;*/
+            }
+    </style>*@
+
+
+
+<nav data-pagination>
+    <a href=# disabled><i class=ion-chevron-left></i></a>
+    <ul>
+        <partial name="_PaginationPartial" model="Model" />
+
+    </ul>
+    <a href=#2><i class=ion-chevron-right></i></a>
+
+</nav>
+
+
+
+<div class="contain">
+
+    <div class="searchmovie">
+        <div class="searchresults">
+            <h3>RESULTS FOR : <span>@ViewData["Query"]</span></h3>
+            <div class="resultTotal">
+                <h4><span class="resultTotalColour">@Model.TotalItems</span> RESULTS</h4>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="row__inner">
+
+            @foreach (var product in Model.Data)
+            {
+
+
+                <div class="tile">
+                    <a href="@Url.Action("TvShowDetails","TvShow", new { tvId = product.Id })">
+                        <div class="tile__media">
+                            <img class="tile__img" src="https://image.tmdb.org/t/p/original/@product.PosterPath" href="@Url.Action("TvShowDetails","TvShow", new { tvId = @product.Id })" />
+                        </div>
+
+                        <div class="tile__details">
+                            <div class="tile__title">@product.Name</div>
+                        </div>
+                    </a>
+                </div>
+
+
+
+
+            }
+
+        </div>
+    </div>
+</div>
+
