@@ -1,72 +1,174 @@
 ﻿@using DotnetFlix.Objects.Movies;
 @model Movie
-
-<div class="row">
-    <div class="col-md-12">
-        <div class="carousel slide" id="castCarousel" data-ride="carousel">
-            <div class="carousel-inner">
-                @{
-                    var getMovies = (from result in Model.Credits.Cast
-                                     select new
-                                     {
-                                         Name = result.Name,
-                                         ProfilePath = result.ProfilePath
-                                     }).ToList().Select(p => new Cast()
-                                     {
-                                         Name = p.Name,
-                                         ProfilePath = p.ProfilePath,
-                                     });
+<link href="~/netflix/css/netflixSliderCast.css" rel="stylesheet" />
+<script src="~/netflix/js/netflixSlider.js"></script>
 
 
-                    var items = getMovies.Take(6);
-                    var iteration = 0;
-                }
-                @while (items.Count() > 0)
+
+
+
+<body>
+    @{
+        var getMovies = (from result in Model.Credits.Cast
+                         select new
+                         {
+                             Name = result.Name,
+                             ProfilePath = result.ProfilePath
+                         }).ToList().Select(p => new Cast()
+                         {
+                             Name = p.Name,
+                             ProfilePath = p.ProfilePath,
+                         });
+
+
+        var items = getMovies.Take(1);
+        var iteration = 0;
+    }
+
+    <div id="apiDiv" class="carousel js-carousel">
+
+        @while (items.Count() > 0)
+        {
+            var active = iteration == 0 ? "active" : "";
+
+            <div class="carousel-item @active">
+                @foreach (var item in items)
                 {
-                    var active = iteration == 0 ? "active" : "";
-
-                    <div class="carousel-item @active">
-                        <div class="row">
-                            @foreach (var item in items)
+                    <div class="item js-item" id="message" style="height: 300px; width: 200px;">
+                        <div class="imageDiv" id="message">
+                            @if (item.ProfilePath == null)
                             {
-                                <div class="col-md-2">
-                                    @if (item.ProfilePath == null)
-                                    {
-                                        <img src="~/images/nophoto.jpg" />
-                                        <h5>@item.Name</h5>
-                                    }
-                                    else
-                                    {
-                                        <img src="https://image.tmdb.org/t/p/w200/@item.ProfilePath" />
-                                        <h5>@item.Name</h5>
-                                    }
-
-                                </div>
+                                <img src="~/images/nophoto.jpg" />
+                                <h5>@item.Name</h5>
+                            }
+                            else
+                            {
+                                <img src="https://image.tmdb.org/t/p/w200/@item.ProfilePath" />
+                                <h5>@item.Name</h5>
                             }
                         </div>
                     </div>
-
-                    iteration++;
-                    items = getMovies.Skip(6 * iteration).Take(6);
                 }
 
             </div>
-        </div><!--.carousel-inner-->
-        <div class="container-fluid">
-            <div class="row justify-content-center">
-                <div class="col">
-                    <a data-slide="prev" href="#castCarousel" class="left carousel-control"><i class="fas fa-arrow-alt-circle-left"></i></a>
+
+            iteration++;
+            items = getMovies.Skip(1 * iteration).Take(1);
+        }
+
+
+
+    </div>
+
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="modalTitleH4"></h4>
                 </div>
-                <div class="col ">
-                    <p>
-                    </p>
+                <div class="modal-body" id="modalBodyDiv">
                 </div>
-                <div class="col justify-content-end">
-                    <a data-slide="next" href="#castCarousel" class="right carousel-control"><i class="fas fa-arrow-alt-circle-right"></i></a>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
-
         </div>
+    </div>
 
-    </div><!--.Carousel-->
-</div>
+    <script>
+        $(document).ready(function () {
+            $("#reset").click(function (e) {
+                location.reload();
+            });
+
+            $("#submit").click(function (e) {
+                var validate = Validate();
+                $("#message").html(validate);
+                if (validate.length == 0) {
+                    CallAPI(1);
+                }
+            });
+
+            $("#message").on("click", ".result", function () {
+                var resourceId = $(this).attr("resourceId");
+                $.ajax({
+                    url: "https://api.themoviedb.org/3/person/" + resourceId + "?language=en-US",
+                    data: {
+                        api_key: "3356865d41894a2fa9bfa84b2b5f59bb"
+                    },
+                    dataType: 'json',
+                    success: function (result, status, xhr) {
+                        $("#modalTitleH4").html(result["name"]);
+
+                        var image = result["profile_path"] == null ? "Image/no-image.png" : "https://image.tmdb.org/t/p/w500/" + result["profile_path"];
+                        var biography = result["biography"] == null ? "No information available" : result["biography"];
+
+                        var resultHtml = "<p class=\"text-center\"><img src=\"" + image + "\"/></p><p>" + biography + "</p>";
+                        resultHtml += "<p>Birdthday: " + result["birthday"] + "</p><p>Place of Birth: " + result["place_of_birth"] + "";
+
+                        $("#modalBodyDiv").html(resultHtml)
+
+                        $("#myModal").modal("show");
+                    },
+                    error: function (xhr, status, error) {
+                        $("#message").html("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+                    }
+                });
+            });
+
+            $(document).ajaxStart(function () {
+                $(".imageDiv img").show();
+            });
+
+            $(document).ajaxStop(function () {
+                $(".imageDiv img").hide();
+            });
+
+            function CallAPI(page) {
+                $.ajax({
+                    url: "https://api.themoviedb.org/3/search/person?language=en-US&query=" + $("#searchInput").val() + "&page=" + page + "&include_adult=false",
+                    data: { "api_key": "3356865d41894a2fa9bfa84b2b5f59bb" },
+                    dataType: "json",
+                    success: function (result, status, xhr) {
+                        var resultHtml = $("<div class=\"resultDiv\"><p>Names</p>");
+                        for (i = 0; i < result["results"].length; i++) {
+
+                            var image = result["results"][i]["profile_path"] == null ? "Image/no-image.png" : "https://image.tmdb.org/t/p/w500/" + result["results"][i]["profile_path"];
+
+                            resultHtml.append("<div class=\"result\" resourceId=\"" + result["results"][i]["id"] + "\">" + "<img src=\"" + image + "\" />" + "<p><a>" + result["results"][i]["name"] + "</a></p></div>")
+                        }
+
+                        resultHtml.append("</div>");
+                        $("#message").html(resultHtml);
+
+                        Paging(result["total_pages"]);
+                    },
+                    error: function (xhr, status, error) {
+                        $("#message").html("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+                    }
+                });
+            }
+
+            function Validate() {
+                var errorMessage = "";
+                if ($("#searchInput").val() == "") {
+                    errorMessage += "► Enter Search Text";
+                }
+                return errorMessage;
+            }
+
+            function Paging(totalPage) {
+                var obj = $("#pagination").twbsPagination({
+                    totalPages: totalPage,
+                    visiblePages: 5,
+                    onPageClick: function (event, page) {
+                        CallAPI(page);
+                    }
+                });
+            }
+
+        });
+    </script>
+</body>

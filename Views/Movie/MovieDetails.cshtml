@@ -181,28 +181,24 @@
                             </div>
                         </div>
                     </div>
-                    <ul class="menu" role="tablist">
-                        <li class="Overview current" id="tab-Overview">
-                            <a role="link" tabindex="0">RIEPILOGO</a>
-                            <span></span>
-                        </li>
-                        <li class="MoreLikeThis" id="tab-MoreLikeThis">
-                            <a role="link" tabindex="0">ALTRI TITOLI SIMILI</a>
-                            <span></span>
-                        </li>
-                        <li class="ShowDetails" id="tab-ShowDetails">
-                            <a role="link" tabindex="0">DETTAGLI</a>
-                            <span></span>
-                        </li>
-                    </ul>
                 </div>
-                <button class="close-button icon-close" tabindex="0" aria-label="Chiudi"></button>
             </div>
-        </div>
     </span>
-</span>
 
+    <div class="lolomoRow lolomoRow_title_card" data-list-context="genre">
+        <h2 class="rowHeader">
+            <a aria-label="serie tv" class="rowTitle" href="">
+                <!--Head Title-->
+                <div class="row-header-title">CAST</></div>
+                <div class="aro-row-header">
+                    <!-- Hover => Browes all-->
+                    <div class="see-all-link">Browse All</div>
 
+                    <div class="aro-row-chevron icon-akiraCaretRight"></div>
+                </div>
+            </a>
+        </h2>
 
+        @await Component.InvokeAsync("Cast", Model.Id)
 
-
+    </div>
